@@ -1,22 +1,19 @@
-import { client } from '@/sanity/lib/client'
-import { homeQuery } from '@/sanity/lib/queries'
+import { client } from "@/sanity/lib/client";
+import { homeQuery } from "@/sanity/lib/queries";
+import HomeHero from "./components/section/HomeHero";
+import UniqueSection from "./components/section/UniqueSection";
 
 export default async function HomePage() {
-  const data = await client.fetch(homeQuery)
+  const home = await client.fetch(homeQuery);
 
   return (
-    <main className="p-10 space-y-6">
-      <h1 className="text-4xl font-bold">
-        {data?.introText || "No content yet"}
-      </h1>
+    <>
+      <HomeHero data={home} />
 
-      <p className="text-lg">
-        {data?.conceptText}
-      </p>
-
-      <button className="bg-black text-white px-6 py-3 rounded">
-        {data?.ctaText}
-      </button>
-    </main>
-  )
+      <UniqueSection
+        points={home.uniquePoints}
+        extraText="Beyond classes, we host wellness events, mobility workshops, and mindfulness sessions to build a thriving wellness community."
+      />
+    </>
+  );
 }
