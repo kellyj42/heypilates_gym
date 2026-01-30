@@ -23,7 +23,7 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="fixed top-4 left-0 right-0 z-50 flex justify-center">
+      <header className="relative top-4 left-0 right-0 z-50 flex justify-center">
         <div
           className={`
             w-full max-w-6xl transition-all duration-300
