@@ -1,13 +1,13 @@
-import home from './home'
-import founder from './founder'
+import home from './homeType'
+import { founderType } from './founderType'
 import classType from './classType'
-import pricing from './pricing'
-import privateTraining from './privateTraining'
+import pricing from './pricingType'
+import privateTraining from './privateTrainingType'
 
 export const schema = {
   types: [
     home,
-    founder,
+    founderType,
     classType,
     pricing,
     privateTraining,

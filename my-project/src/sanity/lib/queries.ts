@@ -4,14 +4,17 @@ export const homeQuery = `
   conceptText,
   uniquePoints,
   ctaText,
+
   heroImage{
-    asset->{
-      _id,
-      url
-    }
+    asset->{url}
+  },
+
+  uniqueGallery[]{
+    asset->{url}
   }
 }
 `
+
 
 
 
@@ -20,15 +23,16 @@ export const founderQuery = `
   name,
   title,
   bio,
-  certifications,
-  photo{
+  credentials,
+  vision,
+  image{
     asset->{
-      _id,
       url
     }
   }
 }
 `
+
 export const classesQuery = `
 *[_type == "classType"] | order(name asc){
   _id,
