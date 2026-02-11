@@ -1,0 +1,4 @@
+// In your component, you can use:
+playNotificationSound();  Will use the default /sounds/notification.mp3
+
+playNotificationSound('https://assets.mixkit.co/active_storage/sfx/286/286-preview.mp3');
