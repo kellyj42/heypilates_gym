@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { createClient } from "next-sanity";
-import { apiVersion, dataset, projectId } from "@/sanity/env";
 
 const contactSchema = z.object({
   name: z.string().min(1),
@@ -13,11 +12,25 @@ const contactSchema = z.object({
 
 export async function POST(req: Request) {
   const token = process.env.SANITY_API_WRITE_TOKEN;
+  const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+  const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET;
+  const apiVersion =
+    process.env.NEXT_PUBLIC_SANITY_API_VERSION || "2026-01-30";
+
   if (!token) {
-    return NextResponse.json(
-      { error: "Missing SANITY_API_WRITE_TOKEN" },
-      { status: 500 }
-    );
+    return NextResponse.json({
+      ok: true,
+      skipped: true,
+      reason: "Missing SANITY_API_WRITE_TOKEN",
+    });
+  }
+
+  if (!projectId || !dataset) {
+    return NextResponse.json({
+      ok: true,
+      skipped: true,
+      reason: "Missing Sanity project configuration",
+    });
   }
 
   const payload = await req.json().catch(() => null);

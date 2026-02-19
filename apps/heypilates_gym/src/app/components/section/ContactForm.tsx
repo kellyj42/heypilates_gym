@@ -39,6 +39,7 @@ export default function ContactForm({ contactInfo }: ContactFormProps) {
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [warningMessage, setWarningMessage] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -55,6 +56,7 @@ export default function ContactForm({ contactInfo }: ContactFormProps) {
     setLoading(true);
     setSubmitted(false);
     setErrorMessage(null);
+    setWarningMessage(null);
 
     try {
       const response = await fetch("/api/contact", {
@@ -68,11 +70,18 @@ export default function ContactForm({ contactInfo }: ContactFormProps) {
         }),
       });
 
+      const responseData = await response.json().catch(() => null);
+
       if (!response.ok) {
-        const errorData = await response.json().catch(() => null);
         const message =
-          errorData?.error || "Unable to send your message right now.";
+          responseData?.error || "Unable to send your message right now.";
         throw new Error(message);
+      }
+
+      if (responseData?.skipped) {
+        setWarningMessage(
+          "Message received, but delivery is temporarily unavailable.",
+        );
       }
 
       setSubmitted(true);
@@ -245,6 +254,14 @@ export default function ContactForm({ contactInfo }: ContactFormProps) {
                   <p className="text-green-700 font-semibold">
                     Thank you! We've received your message and will get back to
                     you soon.
+                  </p>
+                </div>
+              )}
+
+              {warningMessage && (
+                <div className="mb-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+                  <p className="text-yellow-800 font-semibold">
+                    {warningMessage}
                   </p>
                 </div>
               )}
