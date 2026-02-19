@@ -8,6 +8,8 @@ import type { PrivateTrainingData } from "./components/types";
 import { client } from "@/sanity/lib/client";
 import { privateTrainingQuery } from "@/sanity/lib/queries";
 
+export const dynamic = "force-dynamic";
+
 export default async function PrivateTrainingSection() {
   const data: PrivateTrainingData | undefined =
     (await client.fetch(privateTrainingQuery)) ?? undefined;

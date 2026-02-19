@@ -6,15 +6,20 @@ import PricingSection from "../components/section/Pricing";
 import { client } from "@/sanity/lib/client";
 import { classTypesQuery, classScheduleQuery } from "@/sanity/lib/queries";
 
+export const dynamic = "force-dynamic";
+
 // app/classes/page.tsx - Updated with better mobile responsiveness
 export default async function ClassesPage() {
   const classes = await client.fetch(classTypesQuery);
   const schedule = await client.fetch(classScheduleQuery);
-  
-  const categories: string[] = [...new Set((classes as any[])
-    .filter((c: any) => c.category)
-    .map((c: any) => c.category as string)
-  )];
+
+  const categories: string[] = [
+    ...new Set(
+      (classes as any[])
+        .filter((c: any) => c.category)
+        .map((c: any) => c.category as string),
+    ),
+  ];
 
   return (
     <div className="min-h-screen">

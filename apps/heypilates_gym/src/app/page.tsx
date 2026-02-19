@@ -6,6 +6,8 @@ import UniqueSection from "./components/section/UniqueSection";
 import FounderSection from "./components/section/FounderSection";
 import PrivateTrainingPreview from "./components/section/PrivateTraining";
 
+export const dynamic = "force-dynamic";
+
 export default async function HomePage() {
   const home = await client.fetch(homeQuery);
   const founder = await client.fetch(founderQuery);
