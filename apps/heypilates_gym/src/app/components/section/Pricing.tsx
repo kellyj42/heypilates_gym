@@ -46,7 +46,7 @@ const pricingPlans = [
       "Progress tracking",
       "Equipment provided",
     ],
-    cta: "Buy Reformer Package",
+    cta: "Buy Reformer Package.",
     popular: false,
   },
 ];

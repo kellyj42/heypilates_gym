@@ -20,7 +20,7 @@ export default function CoachingHero() {
           </h1>
           <p className="text-xl text-[#5B544D] max-w-2xl mx-auto leading-relaxed">
             Founder of Green Bean | Certified Nutrition Coach | Wellness
-            Strategist
+            Strategist.
           </p>
           <div className="mt-10 flex justify-center">
             <div className="relative w-full max-w-3xl aspect-[16/9] rounded-3xl overflow-hidden shadow-xl">
