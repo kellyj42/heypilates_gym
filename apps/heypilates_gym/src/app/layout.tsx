@@ -2,9 +2,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "./components/layout/Navbar";
-import Footer from "./components/layout/Footer";
-import KlaudiaChatWidget from "./components/chatbot/KlaudiaChatWidget";
+import AppShell from "./components/layout/AppShell";
 import { client } from "@/sanity/lib/client";
 import { chatbotQuery } from "@/sanity/lib/queries";
 
@@ -20,7 +18,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Hey Pilates | Transform Your Body",
-  description: "Premium Pilates studio offering group classes and private training",
+  description:
+    "Premium Pilates studio offering group classes and private training",
 };
 
 export default async function RootLayout({
@@ -32,9 +31,9 @@ export default async function RootLayout({
   let chatbotData;
   try {
     chatbotData = await client.fetch(chatbotQuery);
-    console.log('Chatbot data fetched:', chatbotData); // Debug log
+    console.log("Chatbot data fetched:", chatbotData); // Debug log
   } catch (error) {
-    console.error('Error fetching chatbot data:', error);
+    console.error("Error fetching chatbot data:", error);
   }
 
   return (
@@ -42,21 +41,7 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="">
-          <Navbar/>
-        </div>
-        {children}
-        
-        {/* Always show the widget for now, or conditionally show based on data */}
-        {chatbotData?.isActive ? (
-          <KlaudiaChatWidget data={chatbotData} />
-        ) : (
-          <div style={{display: 'none'}}>
-            Chatbot disabled or no data
-          </div>
-        )}
-        
-        <Footer/>
+        <AppShell chatbotData={chatbotData}>{children}</AppShell>
       </body>
     </html>
   );

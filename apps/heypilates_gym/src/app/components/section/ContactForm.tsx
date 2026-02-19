@@ -1,8 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, Phone, MapPin, Clock, Send, Instagram, Facebook, X, Link } from "lucide-react";
-import { Button } from "../ui/Button";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Clock,
+  Send,
+  Instagram,
+  Facebook,
+  X,
+  Link,
+} from "lucide-react";
 import { LinkedinIcon } from "@sanity/icons";
 
 interface ContactFormProps {
@@ -29,9 +38,10 @@ export default function ContactForm({ contactInfo }: ContactFormProps) {
 
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setFormData((prev) => ({
@@ -43,18 +53,39 @@ export default function ContactForm({ contactInfo }: ContactFormProps) {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
+    setSubmitted(false);
+    setErrorMessage(null);
 
     try {
-      // Here you can add your form submission logic
-      // For now, we'll just show a success message
-      console.log("Form submitted:", formData);
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          source: "contact-page",
+        }),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => null);
+        const message =
+          errorData?.error || "Unable to send your message right now.";
+        throw new Error(message);
+      }
+
       setSubmitted(true);
       setFormData({ name: "", email: "", phone: "", message: "" });
 
       // Reset success message after 5 seconds
       setTimeout(() => setSubmitted(false), 5000);
     } catch (error) {
-      console.error("Error submitting form:", error);
+      const message =
+        error instanceof Error
+          ? error.message
+          : "Error submitting form. Please try again.";
+      setErrorMessage(message);
     } finally {
       setLoading(false);
     }
@@ -63,15 +94,15 @@ export default function ContactForm({ contactInfo }: ContactFormProps) {
   const getSocialIcon = (platform: string) => {
     switch (platform.toLowerCase()) {
       case "instagram":
-        return <Instagram/>;
+        return <Instagram />;
       case "facebook":
-        return <Facebook/>;
+        return <Facebook />;
       case "twitter":
-        return <X/>;
+        return <X />;
       case "linkedin":
-        return <LinkedinIcon/>;
+        return <LinkedinIcon />;
       default:
-        return <Link/>;
+        return <Link />;
     }
   };
 
@@ -136,7 +167,8 @@ export default function ContactForm({ contactInfo }: ContactFormProps) {
                 <div>
                   <p className="text-sm text-slate-600 mb-1">Address</p>
                   <p className="text-lg text-brand-charcoal font-semibold">
-                    {contactInfo?.address || "123 Pilates Lane, Fitness City, ST 12345"}
+                    {contactInfo?.address ||
+                      "123 Pilates Lane, Fitness City, ST 12345"}
                   </p>
                 </div>
               </div>
@@ -211,15 +243,25 @@ export default function ContactForm({ contactInfo }: ContactFormProps) {
               {submitted && (
                 <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg">
                   <p className="text-green-700 font-semibold">
-                    Thank you! We've received your message and will get back to you soon.
+                    Thank you! We've received your message and will get back to
+                    you soon.
                   </p>
+                </div>
+              )}
+
+              {errorMessage && (
+                <div className="mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+                  <p className="text-red-700 font-semibold">{errorMessage}</p>
                 </div>
               )}
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 {/* Name */}
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-brand-charcoal mb-2">
+                  <label
+                    htmlFor="name"
+                    className="block text-sm font-medium text-brand-charcoal mb-2"
+                  >
                     Your Name
                   </label>
                   <input
@@ -236,7 +278,10 @@ export default function ContactForm({ contactInfo }: ContactFormProps) {
 
                 {/* Email */}
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-brand-charcoal mb-2">
+                  <label
+                    htmlFor="email"
+                    className="block text-sm font-medium text-brand-charcoal mb-2"
+                  >
                     Email Address
                   </label>
                   <input
@@ -253,7 +298,10 @@ export default function ContactForm({ contactInfo }: ContactFormProps) {
 
                 {/* Phone */}
                 <div>
-                  <label htmlFor="phone" className="block text-sm font-medium text-brand-charcoal mb-2">
+                  <label
+                    htmlFor="phone"
+                    className="block text-sm font-medium text-brand-charcoal mb-2"
+                  >
                     Phone Number
                   </label>
                   <input
@@ -269,7 +317,10 @@ export default function ContactForm({ contactInfo }: ContactFormProps) {
 
                 {/* Message */}
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium text-brand-charcoal mb-2">
+                  <label
+                    htmlFor="message"
+                    className="block text-sm font-medium text-brand-charcoal mb-2"
+                  >
                     Message
                   </label>
                   <textarea
@@ -288,7 +339,7 @@ export default function ContactForm({ contactInfo }: ContactFormProps) {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-brand-pink hover:bg-pink-600 text-white font-bold py-3 rounded-lg transition flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-brand-pink border hover:text-white hover:bg-brand-sageDark text-slate-400 font-bold py-3 rounded-lg transition flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <Send className="w-5 h-5" />
                   {loading ? "Sending..." : "Send Message"}

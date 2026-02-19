@@ -177,3 +177,19 @@ export const contactQuery = `
   mapEmbed
 }
 `;
+
+export const teachersQuery = `
+*[_type == "teacher"] | order(order asc, name asc) {
+  _id,
+  name,
+  title,
+  bio,
+  specialties,
+  rating,
+  sessions,
+  isFeatured,
+  image {
+    asset->{url}
+  }
+}
+`;

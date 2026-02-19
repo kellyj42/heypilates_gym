@@ -35,7 +35,7 @@ export default function Navbar() {
     },
     { href: "/coaching", label: "Nutrition Coaching" },
     { href: "/menu", label: "Menu" },
-    { href: "/contact", label: "Contact" },
+    { href: "/contact-page", label: "Contact" },
   ];
 
   // Helper to check if a link (or its dropdown) is active
@@ -46,7 +46,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`w-full fixed top-0 z-50 transition-all duration-100
+      className={`w-full '] fixed top-0 z-50 transition-all duration-100
         ${
           isScrolled
             ? "bg-[#5B544D]/50 backdrop-blur-sm shadow-lg "
@@ -89,28 +89,20 @@ export default function Navbar() {
 
               {/* Dropdown Menu */}
               {link.hasDropdown && (
-                <div
-                  className="absolute left-1/2 -translate-x-1/2 mt-2 w-56 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-1 group-hover:translate-y-0 z-50
-                  "
-                >
+                <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-56 bg-white rounded-lg shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 translate-y-1 group-hover:translate-y-0 z-50">
                   <div className="py-2">
                     {link.dropdownItems?.map((item) => (
                       <Link
                         key={item.href}
                         href={item.href}
-                        className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-[#F5F3EE] hover:text-[#2E2A26] transition-colors duration-150
-                        "
+                        className="block px-4 py-2.5 text-sm text-gray-700 hover:bg-[#F5F3EE] hover:text-[#2E2A26] transition-colors duration-150"
                       >
                         {item.label}
                       </Link>
                     ))}
                   </div>
                   {/* Tiny caret */}
-                  <div
-                    className="
-                      absolute -top-1 left-1/2 -translate-x-1/2 w-3 h-3 bg-white rotate-45
-                    "
-                  ></div>
+                  <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-3 h-3 bg-white rotate-45"></div>
                 </div>
               )}
             </div>
@@ -120,8 +112,7 @@ export default function Navbar() {
         {/* Desktop CTA */}
         <Link
           href="/meal-plans"
-          className="hidden md:inline-block bg-[#A3AD5F] text-[#2E2A26] px-5 py-2 rounded-full text-sm font-medium hover:bg-[#B8C474] hover:shadow-lg active:scale-95 transition-all duration-200
-          "
+          className="hidden md:inline-block bg-[#A3AD5F] text-[#2E2A26] px-5 py-2 rounded-full text-sm font-medium hover:bg-[#B8C474] hover:shadow-lg active:scale-95 transition-all duration-200"
         >
           Get Started
         </Link>
@@ -129,8 +120,7 @@ export default function Navbar() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="md:hidden text-[#F5F3EE] p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A3AD5F] transition-colors
-          "
+          className="md:hidden text-[#F5F3EE] p-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A3AD5F] transition-colors"
           aria-label="Toggle menu"
           aria-expanded={isMobileMenuOpen}
         >
@@ -161,8 +151,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Panel */}
       <div
-        className={`md:hidden absolute top-full left-0 w-full bg-[#5B544D] border-t border-[#F5F3EE]/20 transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}
-        `}
+        className={`md:hidden absolute top-full left-0 w-full bg-[#5B544D] border-t border-[#F5F3EE]/20 transition-all duration-300 overflow-hidden ${isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
       >
         <div className="px-6 py-5 flex flex-col space-y-4">
           {navLinks.map((link) => (
@@ -200,8 +189,7 @@ export default function Navbar() {
           ))}
           <Link
             href="/meal-plans"
-            className="bg-[#A3AD5F] text-[#2E2A26] px-5 py-2.5 rounded-full text-sm font-medium text-center hover:bg-[#B8C474] transition-colors
-            "
+            className="bg-[#A3AD5F] text-[#2E2A26] px-5 py-2.5 rounded-full text-sm font-medium text-center hover:bg-[#B8C474] transition-colors"
             onClick={() => setIsMobileMenuOpen(false)}
           >
             Get Started

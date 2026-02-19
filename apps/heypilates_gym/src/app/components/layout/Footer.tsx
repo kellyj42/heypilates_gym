@@ -56,11 +56,7 @@ export default function Footer() {
                   Pricing & Packages
                 </Link>
               </li>
-              <li>
-                <Link href="/instructors" className="text-brand-muted hover:text-brand-sageDark transition">
-                  Our Team
-                </Link>
-              </li>
+              
               <li>
                 <Link href="/testimonials" className="text-brand-muted hover:text-brand-sageDark transition">
                   Success Stories
@@ -74,23 +70,13 @@ export default function Footer() {
             <h4 className="text-lg font-bold text-brand-charcoal mb-6">Resources</h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/blog" className="text-brand-muted hover:text-brand-sageDark transition">
-                  Wellness Blog
-                </Link>
-              </li>
-              <li>
-                <Link href="/faq" className="text-brand-muted hover:text-brand-sageDark transition">
-                  FAQ
-                </Link>
-              </li>
-              <li>
                 <Link href="/events" className="text-brand-muted hover:text-brand-sageDark transition">
                   Events & Workshops
                 </Link>
               </li>
               <li>
                 <Link href="/gift-cards" className="text-brand-muted hover:text-brand-sageDark transition">
-                  Gift Cards
+                  Events
                 </Link>
               </li>
               <li>
@@ -113,7 +99,7 @@ export default function Footer() {
                 </span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-brand-sageDark flex-shrink-0" />
+                <Phone className="w-5 h-5 text-brand-sageDark jj-shrink-0" />
                 <a href="tel:+256XXXXXXXXX" className="text-brand-muted hover:text-brand-sageDark transition">
                   +256 XXX XXX XXX
                 </a>

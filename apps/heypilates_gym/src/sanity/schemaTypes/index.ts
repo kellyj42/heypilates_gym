@@ -6,6 +6,8 @@ import ChatbotType from './ChatbotType'
 import classScheduleType from './classScheduleType'
 import pricingType from './pricingType'
 import { contactType } from './contactType'
+import teacherType from './teacherType'
+import contactMessageType from './contactMessageType'
 
 export const schema = {
   types: [
@@ -17,5 +19,7 @@ export const schema = {
     privateTraining,
     ChatbotType,
     contactType,
+    teacherType,
+    contactMessageType,
   ],
 }
