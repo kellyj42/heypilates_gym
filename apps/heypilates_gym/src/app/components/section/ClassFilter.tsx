@@ -33,23 +33,7 @@ export default function ClassFilter({ categories }: ClassFilterProps) {
           Clear All
         </button>
       </div>
-      
-      {/* Category Filters - Scrollable on mobile */}
-      <div className="mb-4 sm:mb-6 overflow-x-auto pb-2 -mx-2 px-2">
-        <div className="flex gap-2 min-w-max">
-          <button className="px-3 sm:px-4 py-2 bg-brand-sageDark text-white rounded-full text-sm sm:text-base font-medium hover:bg-brand-sage transition-colors whitespace-nowrap">
-            All Classes
-          </button>
-          {uniqueCategories.map(category => (
-            <button
-              key={category}
-              className="px-3 sm:px-4 py-2 bg-white border border-gray-300 rounded-full text-gray-700 text-sm sm:text-base hover:border-brand-sage hover:bg-brand-cream transition-colors whitespace-nowrap"
-            >
-              {category.charAt(0).toUpperCase() + category.slice(1)}
-            </button>
-          ))}
-        </div>
-      </div>
+    
       
       {/* Other Filters - Scrollable on mobile */}
       <div className="overflow-x-auto pb-2 -mx-2 px-2">

@@ -54,6 +54,7 @@ const pricingPlans = [
 export default function PricingSection() {
   return (
     <section className="py-12 sm:py-20 px-4 sm:px-6 bg-gradient-to-b from-white to-brand-cream">
+      
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-8 sm:mb-12">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-brand-sageLight rounded-full text-brand-sageDark text-xs sm:text-sm font-medium mb-3 sm:mb-4">
