@@ -1,6 +1,14 @@
 // app/components/layout/Footer.tsx
-import { Facebook, Instagram, Mail, Phone, MapPin, Sparkles } from "lucide-react";
+import {
+  Facebook,
+  Instagram,
+  Mail,
+  Phone,
+  MapPin,
+  Sparkles,
+} from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -11,27 +19,37 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-10">
           {/* Brand Column */}
           <div>
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-brand-sage to-brand-sageDark flex items-center justify-center">
-                <Sparkles className="w-7 h-7 text-white" />
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-brand-charcoal">Hey Pilates</h3>
-                <p className="text-sm text-brand-muted">Boutique Movement Studio</p>
-              </div>
+            <div className="">
+              <Image
+                src="/logo.png"
+                alt="HeyPilates"
+                width={320}
+                height={120}
+                priority
+                className="h-14 w-60 object-cover"
+              />
             </div>
             <p className="text-brand-muted mb-6">
-              Transformative movement experiences in the heart of Kampala. 
+              Transformative movement experiences in the heart of Kampala.
               Building strength, balance, and community.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 rounded-full bg-brand-sageLight flex items-center justify-center hover:bg-brand-sage transition">
+              <a
+                href="#"
+                className="w-10 h-10 rounded-full bg-brand-sageLight flex items-center justify-center hover:bg-brand-sage transition"
+              >
                 <Instagram className="w-5 h-5 text-brand-sageDark" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-brand-sageLight flex items-center justify-center hover:bg-brand-sage transition">
+              <a
+                href="#"
+                className="w-10 h-10 rounded-full bg-brand-sageLight flex items-center justify-center hover:bg-brand-sage transition"
+              >
                 <Facebook className="w-5 h-5 text-brand-sageDark" />
               </a>
-              <a href="#" className="w-10 h-10 rounded-full bg-brand-sageLight flex items-center justify-center hover:bg-brand-sage transition">
+              <a
+                href="#"
+                className="w-10 h-10 rounded-full bg-brand-sageLight flex items-center justify-center hover:bg-brand-sage transition"
+              >
                 <Mail className="w-5 h-5 text-brand-sageDark" />
               </a>
             </div>
@@ -39,26 +57,40 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-bold text-brand-charcoal mb-6">Quick Links</h4>
+            <h4 className="text-lg font-bold text-brand-charcoal mb-6">
+              Quick Links
+            </h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/classes" className="text-brand-muted hover:text-brand-sageDark transition">
+                <Link
+                  href="/classes"
+                  className="text-brand-muted hover:text-brand-sageDark transition"
+                >
                   Class Schedule
                 </Link>
               </li>
               <li>
-                <Link href="/private-training" className="text-brand-muted hover:text-brand-sageDark transition">
+                <Link
+                  href="/private-training"
+                  className="text-brand-muted hover:text-brand-sageDark transition"
+                >
                   Private Training
                 </Link>
               </li>
               <li>
-                <Link href="/pricing" className="text-brand-muted hover:text-brand-sageDark transition">
+                <Link
+                  href="/pricing"
+                  className="text-brand-muted hover:text-brand-sageDark transition"
+                >
                   Pricing & Packages
                 </Link>
               </li>
-              
+
               <li>
-                <Link href="/testimonials" className="text-brand-muted hover:text-brand-sageDark transition">
+                <Link
+                  href="/testimonials"
+                  className="text-brand-muted hover:text-brand-sageDark transition"
+                >
                   Success Stories
                 </Link>
               </li>
@@ -67,20 +99,31 @@ export default function Footer() {
 
           {/* Resources */}
           <div>
-            <h4 className="text-lg font-bold text-brand-charcoal mb-6">Resources</h4>
+            <h4 className="text-lg font-bold text-brand-charcoal mb-6">
+              Resources
+            </h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/events" className="text-brand-muted hover:text-brand-sageDark transition">
+                <Link
+                  href="/events"
+                  className="text-brand-muted hover:text-brand-sageDark transition"
+                >
                   Events & Workshops
                 </Link>
               </li>
               <li>
-                <Link href="/gift-cards" className="text-brand-muted hover:text-brand-sageDark transition">
+                <Link
+                  href="/gift-cards"
+                  className="text-brand-muted hover:text-brand-sageDark transition"
+                >
                   Events
                 </Link>
               </li>
               <li>
-                <Link href="/corporate" className="text-brand-muted hover:text-brand-sageDark transition">
+                <Link
+                  href="/corporate"
+                  className="text-brand-muted hover:text-brand-sageDark transition"
+                >
                   Corporate Wellness
                 </Link>
               </li>
@@ -89,24 +132,35 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-bold text-brand-charcoal mb-6">Contact Us</h4>
+            <h4 className="text-lg font-bold text-brand-charcoal mb-6">
+              Contact Us
+            </h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-brand-sageDark mt-1 flex-shrink-0" />
                 <span className="text-brand-muted">
-                  Kampala, Uganda<br />
-                  <span className="text-sm">(Exact address shared upon booking)</span>
+                  Kampala, Uganda
+                  <br />
+                  <span className="text-sm">
+                    (Exact address shared upon booking)
+                  </span>
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-brand-sageDark jj-shrink-0" />
-                <a href="tel:+256XXXXXXXXX" className="text-brand-muted hover:text-brand-sageDark transition">
+                <a
+                  href="tel:+256XXXXXXXXX"
+                  className="text-brand-muted hover:text-brand-sageDark transition"
+                >
                   +256 XXX XXX XXX
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-brand-sageDark flex-shrink-0" />
-                <a href="mailto:hello@heypilates.com" className="text-brand-muted hover:text-brand-sageDark transition">
+                <a
+                  href="mailto:hello@heypilates.com"
+                  className="text-brand-muted hover:text-brand-sageDark transition"
+                >
                   hello@heypilates.com
                 </a>
               </li>
@@ -121,13 +175,22 @@ export default function Footer() {
               © {currentYear} Hey Pilates. All rights reserved.
             </p>
             <div className="flex gap-6 text-sm text-brand-muted">
-              <Link href="/privacy" className="hover:text-brand-sageDark transition">
+              <Link
+                href="/privacy"
+                className="hover:text-brand-sageDark transition"
+              >
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="hover:text-brand-sageDark transition">
+              <Link
+                href="/terms"
+                className="hover:text-brand-sageDark transition"
+              >
                 Terms of Service
               </Link>
-              <Link href="/cancellation" className="hover:text-brand-sageDark transition">
+              <Link
+                href="/cancellation"
+                className="hover:text-brand-sageDark transition"
+              >
                 Cancellation Policy
               </Link>
             </div>
