@@ -30,7 +30,7 @@ export default function ClassHero() {
           <p className="text-sm sm:text-base md:text-xl text-white/90 mb-6 sm:mb-10 max-w-2xl">
             Experience the perfect blend of strength, mindfulness, and community 
             in our boutique group classes. Small groups ensure personalized attention 
-            while maintaining the energy of shared movement.
+            while maintaining the energy of shared movement
           </p>
           
           {/* Features - Stack on mobile */}
